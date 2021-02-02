@@ -28,11 +28,22 @@ export class FetchMaxAllotment {
     calculate() {
         const state_lookup_key = this.state_lookup_key();
         const scale = MAX_ALLOTMENTS[state_lookup_key][this.target_year];
+        var calculated_max_allotment;
 
         if (0 < this.household_size && this.household_size < 9) {
-            return scale[this.household_size];
+            calculated_max_allotment = scale[this.household_size];
+            if (this.target_year == 2021) { // Stimulus bill includes 15% boost through June 2021
+                return calculated_max_allotment * 1.15;
+            } else {
+                return calculated_max_allotment;
+            }
         } else if (9 <= this.household_size) {
-            return scale[8] + ((this.household_size - 8) * (scale['each_additional']));
+            calculated_max_allotment = scale[8] + ((this.household_size - 8) * (scale['each_additional']));
+            if (this.target_year == 2021) { // Stimulus bill includes 15% boost through June 2021
+                return calculated_max_allotment * 1.15;
+            } else {
+                return calculated_max_allotment;
+            }
         } else if (this.household_size <= 0) {
             throw new Error('Household size out of bounds (at or below zero).');
         }
