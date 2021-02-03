@@ -63,6 +63,7 @@ export class ParseInputs {
         }
         this.handle_utility_allowance_input('utility_allowance');
         this.handle_target_year_input('target_year');
+        this.handle_ui_boost_2021_input('ui_boost_2021');
 
         return this.inputs;
     }
@@ -223,5 +224,34 @@ export class ParseInputs {
         this.inputs[input_key] = try_parse_int;
         return true;
     }
-}
 
+    handle_ui_boost_2021_input(input_key) {
+        // Check if the key exists in the inputs object.
+        // OK if key is not set; set to null and handle with default in src.
+        if (!(input_key in this.inputs)) {
+            this.inputs[input_key] = null;
+            return true;
+        }
+
+        const input_value = this.inputs[input_key];
+
+        // Check if value is undefined, null, or blank.
+        // OK if value is undefined, null, or blank; set to null and handle with default in src.
+        if (input_value === null || input_value === '' || input_value === undefined) {
+            this.inputs[input_key] = null;
+            return true;
+        } else if ([false, null].indexOf(input_value) > -1) {
+            return true;
+        } else if (typeof input_value === 'string') {
+            this.inputs[input_key] = (input_value === 'true');
+        } else {
+            this.errors.push(`Unexpected value for ${input_key}`);
+        }
+
+        // If they've said they are including the $300 UI income boost but the monthly_non_job_income isn't at least $300
+        if (this.inputs[input_key] && this.inputs['monthly_non_job_income'] < 300) {
+            this.errors.push(`${input_key} exclusion cannot exceed non-job income`)
+        }
+
+    }
+}

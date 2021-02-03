@@ -8,6 +8,7 @@ interface SnapEntrypointInputs {
     state_or_territory: State;
     monthly_job_income: number;
     monthly_non_job_income: number;
+    ui_boost_2021: boolean;
     household_size: number;
     household_includes_elderly_or_disabled: boolean;
     resources: number;

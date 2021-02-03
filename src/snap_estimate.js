@@ -21,6 +21,7 @@ interface SnapEstimateInputs {
     state_or_territory: State;
     monthly_job_income: number;
     monthly_non_job_income: number;
+    ui_boost_2021: boolean;
     household_size: number;
     household_includes_elderly_or_disabled: boolean;
     resources: number;
@@ -41,6 +42,7 @@ export class SnapEstimate {
     state_or_territory: string;
     monthly_job_income: number;
     monthly_non_job_income: number;
+    ui_boost_2021: boolean;
     household_size: number;
     household_includes_elderly_or_disabled: boolean;
     resources: number;
@@ -84,6 +86,7 @@ export class SnapEstimate {
         this.state_or_territory = inputs.state_or_territory;
         this.monthly_job_income = inputs.monthly_job_income;
         this.monthly_non_job_income = inputs.monthly_non_job_income;
+        this.ui_boost_2021 = inputs.ui_boost_2021;
         this.household_size = inputs.household_size;
         this.household_includes_elderly_or_disabled = inputs.household_includes_elderly_or_disabled;
         this.dependent_care_costs = inputs.dependent_care_costs;
@@ -209,6 +212,7 @@ export class SnapEstimate {
         return new GrossIncome({
             'monthly_job_income': this.monthly_job_income,
             'monthly_non_job_income': this.monthly_non_job_income,
+            'ui_boost_2021': (this.ui_boost_2021 || false),
             'court_ordered_child_support_payments': this.court_ordered_child_support_payments,
             'child_support_payments_treatment': this.child_support_payments_treatment,
         }).calculate();
