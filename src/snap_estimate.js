@@ -212,7 +212,6 @@ export class SnapEstimate {
         return new GrossIncome({
             'monthly_job_income': this.monthly_job_income,
             'monthly_non_job_income': this.monthly_non_job_income,
-            'ui_boost_2021': (this.ui_boost_2021 || false),
             'court_ordered_child_support_payments': this.court_ordered_child_support_payments,
             'child_support_payments_treatment': this.child_support_payments_treatment,
         }).calculate();
@@ -231,6 +230,7 @@ export class SnapEstimate {
             'standard_medical_deduction': this.standard_medical_deduction,
             'standard_medical_deduction_amount': this.standard_medical_deduction_amount,
             'standard_medical_deduction_ceiling': this.standard_medical_deduction_ceiling,
+            'ui_boost_2021': (this.ui_boost_2021 || false),
             'rent_or_mortgage': this.rent_or_mortgage,
             'homeowners_insurance_and_taxes': this.homeowners_insurance_and_taxes,
             'utility_allowance': this.utility_allowance,

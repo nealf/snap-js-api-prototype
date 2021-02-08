@@ -2,7 +2,6 @@ export class GrossIncome {
     constructor(inputs) {
         this.monthly_job_income = inputs.monthly_job_income;
         this.monthly_non_job_income = inputs.monthly_non_job_income;
-        this.ui_boost_2021 = inputs.ui_boost_2021;
         this.child_support_payments_treatment = inputs.child_support_payments_treatment;
         this.court_ordered_child_support_payments = inputs.court_ordered_child_support_payments;
     }
@@ -24,7 +23,6 @@ export class GrossIncome {
     }
 
     calculate_excluding_child_support() {
-        if (this.ui_boost_2021) { this.monthly_non_job_income -= 300 }
         const monthly_income = this.monthly_job_income + this.monthly_non_job_income;
         const explanation = [];
 
@@ -63,7 +61,6 @@ export class GrossIncome {
         );
         explanation.push(gross_income_intro);
 
-        if (this.ui_boost_2021) { this.monthly_non_job_income -= 300 }
         const monthly_income = this.monthly_job_income + this.monthly_non_job_income;
 
         const gross_income_math = (

@@ -2,6 +2,7 @@ import { StandardDeduction } from '../deductions/standard_deduction.js';
 import { EarnedIncomeDeduction } from '../deductions/earned_income_deduction.js';
 import { DependentCareDeduction } from '../deductions/dependent_care_deduction.js';
 import { MedicalExpensesDeduction } from '../deductions/medical_expenses_deduction.js';
+import { UiBoost2021Deduction } from '../deductions/ui_boost_2021_deduction.js';
 import { ShelterDeduction } from '../deductions/shelter_deduction.js';
 import { ChildSupportPaymentsDeduction } from '../deductions/child_support_payments_deduction.js';
 
@@ -18,6 +19,7 @@ export class NetIncome {
         this.standard_medical_deduction = inputs.standard_medical_deduction;
         this.standard_medical_deduction_amount = inputs.standard_medical_deduction_amount;
         this.standard_medical_deduction_ceiling = inputs.standard_medical_deduction_ceiling;
+        this.ui_boost_2021 = inputs.ui_boost_2021,
         this.rent_or_mortgage = inputs.rent_or_mortgage;
         this.homeowners_insurance_and_taxes = inputs.homeowners_insurance_and_taxes;
         this.utility_allowance = inputs.utility_allowance;
@@ -72,6 +74,10 @@ export class NetIncome {
             'standard_medical_deduction_ceiling': this.standard_medical_deduction_ceiling,
         }).calculate();
 
+        const ui_boost_2021_deduction = new UiBoost2021Deduction({
+            'ui_boost_2021': this.ui_boost_2021
+        })
+
         const child_support_payments_deduction = new ChildSupportPaymentsDeduction({
             'child_support_payments_treatment': this.child_support_payments_treatment,
             'court_ordered_child_support_payments': this.court_ordered_child_support_payments,
@@ -82,6 +88,7 @@ export class NetIncome {
             earned_income_deduction,
             dependent_care_deduction,
             medical_expenses_deduction,
+            ui_boost_2021_deduction,
             child_support_payments_deduction,
         ];
 
