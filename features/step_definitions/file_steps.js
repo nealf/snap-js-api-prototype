@@ -1,4 +1,4 @@
-import { Given, Then, When } from 'cucumber';
+import { Given, Then, When } from '@cucumber/cucumber';
 import assert from 'assert';
 import { SnapEstimateEntrypoint } from '../../src/snap_estimate_entrypoint.js';
 
