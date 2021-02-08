@@ -76,7 +76,7 @@ export class NetIncome {
 
         const ui_boost_2021_deduction = new UiBoost2021Deduction({
             'ui_boost_2021': this.ui_boost_2021
-        })
+        }).calculate();
 
         const child_support_payments_deduction = new ChildSupportPaymentsDeduction({
             'child_support_payments_treatment': this.child_support_payments_treatment,

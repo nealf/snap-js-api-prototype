@@ -12,14 +12,12 @@ export class UiBoost2021Deduction {
 
         const result = deductions_api.calculate();
 
+        const explanation = [];
+
         if (result >= 0) {
-            const explanation = [
-                `Since the temporary unemployment income boost for 2021 was included in income, we'll deduct the $${result} as it should be excluded.`
-            ];
+            explanation.push(`Since the temporary unemployment income boost for 2021 was included in income, we'll deduct the $${result} as it should be excluded.`)
         } else {
-            const explanation = [
-                `Since the temporary unemployment income boost for 2021 was not included in income, we do not need to exclude it.`
-            ]
+            explanation.push(`Since the temporary unemployment income boost for 2021 was not included in income, we do not need to exclude it.`)
         }
 
         return {

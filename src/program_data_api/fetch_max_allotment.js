@@ -33,14 +33,14 @@ export class FetchMaxAllotment {
         if (0 < this.household_size && this.household_size < 9) {
             calculated_max_allotment = scale[this.household_size];
             if (this.target_year == 2021) { // Stimulus bill includes 15% boost through June 2021
-                return calculated_max_allotment * 1.15;
+                return Math.round(calculated_max_allotment * 1.15);
             } else {
                 return calculated_max_allotment;
             }
         } else if (9 <= this.household_size) {
             calculated_max_allotment = scale[8] + ((this.household_size - 8) * (scale['each_additional']));
             if (this.target_year == 2021) { // Stimulus bill includes 15% boost through June 2021
-                return calculated_max_allotment * 1.15;
+                return Math.round(calculated_max_allotment * 1.15);
             } else {
                 return calculated_max_allotment;
             }
