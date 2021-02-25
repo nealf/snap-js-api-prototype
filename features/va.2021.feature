@@ -17,25 +17,29 @@ Feature: Virginia scenarios, no EA waiver
     Given a 1-person household
     When we run the benefit estimator...
       Then we find the family is likely eligible
-      And we find the estimated benefit is $204 per month
+      # And we find the estimated benefit is $204 per month
+      And we find the estimated benefit is $235 per month
 
   Scenario: No income or assets, 2 people
     Given a 2-person household
     When we run the benefit estimator...
       Then we find the family is likely eligible
-      And we find the estimated benefit is $374 per month
+      # And we find the estimated benefit is $374 per month
+      And we find the estimated benefit is $430 per month
 
   Scenario: No income or assets, 3 people
     Given a 3-person household
     When we run the benefit estimator...
       Then we find the family is likely eligible
-      And we find the estimated benefit is $535 per month
+      # And we find the estimated benefit is $535 per month
+      And we find the estimated benefit is $615 per month
 
   Scenario: No income or assets, 10 people
     Given a 10-person household
     When we run the benefit estimator...
       Then we find the family is likely eligible
-      And we find the estimated benefit is $1530 per month
+      # And we find the estimated benefit is $1530 per month
+      And we find the estimated benefit is $1759 per month
 
 
   # GROSS AND NET INCOME TESTS #
@@ -59,7 +63,9 @@ Feature: Virginia scenarios, no EA waiver
     And the household has other income of $700 monthly
     When we run the benefit estimator...
       Then we find the family is likely eligible
-      Then we find the estimated benefit is $44 per month
+      # Then we find the estimated benefit is $44 per month
+      # This is more than just a 15% increase because we subtract 30% of net income from the max allotment
+      Then we find the estimated benefit is $75 per month
 
 
   # EMERGENCY ALLOTMENTS #
@@ -70,8 +76,10 @@ Feature: Virginia scenarios, no EA waiver
     And an emergency allotment waiver
     When we run the benefit estimator...
       Then we find the family is likely eligible
-      And we find the estimated benefit is $44 per month
-      And we find the estimated benefit including emergency allotment is $204
+      # And we find the estimated benefit is $44 per month
+      And we find the estimated benefit is $75 per month
+      # And we find the estimated benefit including emergency allotment is $204
+      And we find the estimated benefit including emergency allotment is $235
 
 
   # ASSET TEST #
@@ -111,7 +119,8 @@ Feature: Virginia scenarios, no EA waiver
     And the household has court-ordered child support payments of $300 monthly
     When we run the benefit estimator...
       Then we find the family is likely eligible
-      And we find the estimated benefit is $44 per month
+      # And we find the estimated benefit is $44 per month
+      And we find the estimated benefit is $75 per month
 
   Scenario: Higher child support payment increases benefit
     Given a 1-person household
@@ -119,7 +128,8 @@ Feature: Virginia scenarios, no EA waiver
     And the household has court-ordered child support payments of $600 monthly
     When we run the benefit estimator...
       Then we find the family is likely eligible
-      And we find the estimated benefit is $134 per month
+      # And we find the estimated benefit is $134 per month
+      And we find the estimated benefit is $165 per month
 
 
   # MEDICAL STANDARD DEDUCTION #
@@ -131,7 +141,8 @@ Feature: Virginia scenarios, no EA waiver
     And the household has medical expenses for elderly or disabled members of $34 monthly
     When we run the benefit estimator...
       Then we find the family is likely eligible
-      Then we find the estimated benefit is $44 per month
+      # Then we find the estimated benefit is $44 per month
+      Then we find the estimated benefit is $75 per month
 
   Scenario: Household with medical expenses above $35 threshold
     Given a 1-person household
@@ -140,7 +151,8 @@ Feature: Virginia scenarios, no EA waiver
     And the household has medical expenses for elderly or disabled members of $36 monthly
     When we run the benefit estimator...
       Then we find the family is likely eligible
-      Then we find the estimated benefit is $104 per month
+      # Then we find the estimated benefit is $104 per month
+      Then we find the estimated benefit is $135 per month
 
   Scenario: Household with medical expenses below $235 threshold
     Given a 1-person household
@@ -149,7 +161,8 @@ Feature: Virginia scenarios, no EA waiver
     And the household has medical expenses for elderly or disabled members of $234 monthly
     When we run the benefit estimator...
       Then we find the family is likely eligible
-      Then we find the estimated benefit is $104 per month
+      # Then we find the estimated benefit is $104 per month
+      Then we find the estimated benefit is $135 per month
 
   Scenario: Household with medical expenses above $235 threshold
     Given a 1-person household
@@ -158,7 +171,8 @@ Feature: Virginia scenarios, no EA waiver
     And the household has medical expenses for elderly or disabled members of $300 monthly
     When we run the benefit estimator...
       Then we find the family is likely eligible
-      Then we find the estimated benefit is $124 per month
+      # Then we find the estimated benefit is $124 per month
+      Then we find the estimated benefit is $155 per month
 
 
   # STANDARD UTILITY ALLOWANCE #
@@ -170,7 +184,8 @@ Feature: Virginia scenarios, no EA waiver
     And the household pays for AC or heat, or otherwise qualifies for AC-heat utility allowance
     When we run the benefit estimator...
       Then we find the family is likely eligible
-      Then we find the estimated benefit is $65 per month
+      # Then we find the estimated benefit is $65 per month
+      Then we find the estimated benefit is $96 per month
 
   # Household already receiving the max excess shelter deduction, so no
   # increase in estimated benefit amount after adding utility allowance:
@@ -181,7 +196,8 @@ Feature: Virginia scenarios, no EA waiver
     And the household pays for AC or heat, or otherwise qualifies for AC-heat utility allowance
     When we run the benefit estimator...
       Then we find the family is likely eligible
-      Then we find the estimated benefit is $65 per month
+      # Then we find the estimated benefit is $65 per month
+      Then we find the estimated benefit is $96 per month
 
   # Household with elderly or disabled household member (no limit to shelter deduction)
   # that does not have a heating/cooling utility allowance:
@@ -192,7 +208,8 @@ Feature: Virginia scenarios, no EA waiver
     And the household has rent or mortgage costs of $1200 monthly
     When we run the benefit estimator...
       Then we find the family is likely eligible
-      Then we find the estimated benefit is $99 per month
+      # Then we find the estimated benefit is $99 per month
+      Then we find the estimated benefit is $130 per month
 
   # Household with elderly or disabled household member (no limit to shelter deduction)
   # that has a heating/cooling utility allowance, benefit increases in proportion
@@ -205,7 +222,8 @@ Feature: Virginia scenarios, no EA waiver
     And the household pays for AC or heat, or otherwise qualifies for AC-heat utility allowance
     When we run the benefit estimator...
       Then we find the family is likely eligible
-      Then we find the estimated benefit is $190 per month
+      # Then we find the estimated benefit is $190 per month
+      Then we find the estimated benefit is $221 per month
 
   # Larger household (four or more people) gets a different SUA amount:
   Scenario:
@@ -216,4 +234,5 @@ Feature: Virginia scenarios, no EA waiver
     And the household pays for AC or heat, or otherwise qualifies for AC-heat utility allowance
     When we run the benefit estimator...
       Then we find the family is likely eligible
-      Then we find the estimated benefit is $807 per month
+      # Then we find the estimated benefit is $807 per month
+      Then we find the estimated benefit is $928 per month
