@@ -250,7 +250,8 @@ export class ParseInputs {
 
         // If they've said they are including the $300 UI income boost but the monthly_non_job_income isn't at least $300
         if (this.inputs[input_key] && this.inputs['monthly_non_job_income'] < 300) {
-            this.errors.push(`${input_key} exclusion cannot exceed non-job income`)
+            // this.errors.push(`${input_key} exclusion cannot exceed non-job income`)
+            this.inputs[input_key] = false
         }
 
     }
